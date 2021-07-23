@@ -33,7 +33,7 @@ export const globals = (theme) => css`
   }
 
   h1 {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     font-size: 2.5em;
     line-height: 1.2em;
     padding-bottom: 8px;
@@ -46,7 +46,7 @@ export const globals = (theme) => css`
   }
 
   header {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 
     ${breakpoints.desktop} {
       display: flex;

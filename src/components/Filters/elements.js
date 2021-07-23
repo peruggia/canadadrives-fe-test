@@ -31,7 +31,7 @@ export const Control = styled.span`
 
 export const Input = styled.input`
   border-radius: 4px;
-  border: 1px #758ba0 solid;
+  border: ${({ theme }) => theme.inputBorder};
   color: ${({ theme }) => theme.contrastColor};
   display: block;
   font-size: 16px;
@@ -45,7 +45,7 @@ export const Select = styled.select`
   background: #fff url(${chevronDown}) no-repeat 94% center;
   background-size: 0.8em;
   border-radius: 4px;
-  border: 1px #758ba0 solid;
+  border: ${({ theme }) => theme.inputBorder};
   display: block;
   font-size: 16px;
   line-height: 1.13em;
