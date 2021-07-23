@@ -5,7 +5,7 @@ import { breakpoints } from 'breakpoints';
 export const FiltersComponent = styled.div`
   display: flex;
   flex-direction: column;
-  ${breakpoints.phone} {
+  ${breakpoints.desktop} {
     flex-direction: row;
   }
 `;
@@ -19,7 +19,7 @@ export const Control = styled.span`
     font-weight: 600;
     margin-bottom: 8px;
   }
-  ${breakpoints.phone} {
+  ${breakpoints.desktop} {
     min-width: 200px;
     width: auto;
     margin-left: 24px;

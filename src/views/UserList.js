@@ -1,3 +1,4 @@
+import Filters from 'components/Filters';
 import { useEffect, useState } from 'react';
 import chewbacca from '../assets/chewbacca.jpg';
 import Loader from '../components/Loader';
@@ -15,20 +16,26 @@ function UserList() {
       setStatus('LOADING');
       fetchUsers()
         .then((result = []) => {
-          setStatus('LOADED');
           setListOfUsers(result);
         })
         .catch(() => {
-          setStatus('LOADED');
           setError("Something wrong isn't right");
+        })
+        .finally(() => {
+          setStatus('LOADED');
         });
     }
   }, [hasUsers, status]);
 
   return (
     <main>
-      <h1>Users</h1>
+      <header>
+        <h1>Users</h1>
+        <Filters />
+      </header>
+
       {isLoading && <Loader />}
+
       {error && (
         <>
           <p>{error}</p>
@@ -37,16 +44,7 @@ function UserList() {
           </p>
         </>
       )}
-      <form>
-        <span>
-          <label htmlFor="user-list-search">Search</label>
-          <input type="search" id="user-list-search" name="search" />
-        </span>
-        <span>
-          <label htmlFor="user-list-sorting">Sort by</label>
-          <select id="user-list-sorting"></select>
-        </span>
-      </form>
+
       {hasUsers && (
         <section>
           <ul>

@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { breakpoints } from 'breakpoints';
 
 export const globals = (theme) => css`
   * {
@@ -16,6 +17,10 @@ export const globals = (theme) => css`
     background-color: ${theme.backgroundColor};
     color: ${theme.color};
     padding: 16px;
+
+    ${breakpoints.desktop} {
+      padding: 32px 15vw;
+    }
   }
 
   a {
@@ -33,5 +38,22 @@ export const globals = (theme) => css`
     line-height: 1.2em;
     padding-bottom: 8px;
     border-bottom: 1px ${theme.fade} solid;
+
+    ${breakpoints.desktop} {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+
+  header {
+    margin-bottom: 32px;
+
+    ${breakpoints.desktop} {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px ${theme.fade} solid;
+    }
   }
 `;
