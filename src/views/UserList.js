@@ -1,7 +1,7 @@
 import Error from 'components/Error';
 import Filters from 'components/Filters';
+import ListOfUsers from 'components/ListOfUsers';
 import { useEffect, useMemo, useState } from 'react';
-import chewbacca from '../assets/chewbacca.jpg';
 import Loader from '../components/Loader';
 import {
   fetchUsers,
@@ -65,21 +65,7 @@ function UserList() {
 
       {error && <Error message={error} onRetry={() => setStatus('IDLE')} />}
 
-      {hasUsers && (
-        <section>
-          <ul>
-            {filteredListOfUsers.map(({ email, id, name, username }) => (
-              <li key={id}>
-                <img width="80" src={chewbacca} alt="Chewbacca Avatar" />
-                <p>
-                  {name} <br /> {username} <br />
-                  <a href="mailto:{email}">{email}</a>
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {hasUsers && <ListOfUsers listOfUsers={filteredListOfUsers} />}
     </main>
   );
 }
