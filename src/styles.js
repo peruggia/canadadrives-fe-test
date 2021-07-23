@@ -1,8 +1,13 @@
 import { css } from '@emotion/react';
 
 export const globals = (theme) => css`
-  body {
+  * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
@@ -10,6 +15,7 @@ export const globals = (theme) => css`
     -moz-osx-font-smoothing: grayscale;
     background-color: ${theme.backgroundColor};
     color: ${theme.color};
+    padding: 16px;
   }
 
   a {
@@ -20,9 +26,12 @@ export const globals = (theme) => css`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-`;
 
-export const darkTheme = {
-  backgroundColor: '#282c34',
-  color: 'white',
-};
+  h1 {
+    margin-bottom: 32px;
+    font-size: 2.5em;
+    line-height: 1.2em;
+    padding-bottom: 8px;
+    border-bottom: 1px ${theme.fade} solid;
+  }
+`;
