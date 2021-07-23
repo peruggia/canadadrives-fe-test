@@ -1,3 +1,4 @@
+import Error from 'components/Error';
 import Filters from 'components/Filters';
 import { useEffect, useState } from 'react';
 import chewbacca from '../assets/chewbacca.jpg';
@@ -7,7 +8,7 @@ import { fetchUsers } from '../services/usersService';
 function UserList() {
   const [listOfUsers, setListOfUsers] = useState([]);
   const [status, setStatus] = useState('IDLE');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const hasUsers = listOfUsers.length > 0;
   const isLoading = status === 'LOADING';
 
@@ -36,14 +37,7 @@ function UserList() {
 
       {isLoading && <Loader />}
 
-      {error && (
-        <>
-          <p>{error}</p>
-          <p>
-            <button onClick={() => setStatus('IDLE')}>Try again</button>
-          </p>
-        </>
-      )}
+      {error && <Error message={error} onRetry={() => setStatus('IDLE')} />}
 
       {hasUsers && (
         <section>
