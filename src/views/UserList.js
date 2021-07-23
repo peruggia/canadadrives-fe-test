@@ -1,16 +1,28 @@
 import Error from 'components/Error';
 import Filters from 'components/Filters';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import chewbacca from '../assets/chewbacca.jpg';
 import Loader from '../components/Loader';
-import { fetchUsers } from '../services/usersService';
+import {
+  fetchUsers,
+  filterUsersByText,
+  sortUsersByFieldName,
+} from '../services/usersService';
 
 function UserList() {
   const [listOfUsers, setListOfUsers] = useState([]);
   const [status, setStatus] = useState('IDLE');
   const [error, setError] = useState('');
+  const [searchBy, setSearchBy] = useState('');
+  const [sortBy, setSortBy] = useState('');
+
   const hasUsers = listOfUsers.length > 0;
   const isLoading = status === 'LOADING';
+
+  const filteredListOfUsers = useMemo(() => {
+    const list = filterUsersByText(listOfUsers, searchBy);
+    return sortUsersByFieldName(list, sortBy);
+  }, [listOfUsers, searchBy, sortBy]);
 
   useEffect(() => {
     if (!hasUsers && status === 'IDLE') {
@@ -28,11 +40,25 @@ function UserList() {
     }
   }, [hasUsers, status]);
 
+  function onFilterChange(fieldName, value) {
+    switch (fieldName) {
+      case 'search':
+        setSearchBy(value);
+        break;
+      case 'sort':
+        setSortBy(value);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   return (
     <main>
       <header>
         <h1>Users</h1>
-        <Filters />
+        <Filters onChange={onFilterChange} />
       </header>
 
       {isLoading && <Loader />}
@@ -42,7 +68,7 @@ function UserList() {
       {hasUsers && (
         <section>
           <ul>
-            {listOfUsers.map(({ email, id, name, username }) => (
+            {filteredListOfUsers.map(({ email, id, name, username }) => (
               <li key={id}>
                 <img width="80" src={chewbacca} alt="Chewbacca Avatar" />
                 <p>
