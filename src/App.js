@@ -1,11 +1,15 @@
 import { Global, ThemeProvider } from '@emotion/react';
+import OmgEverythingWentWrong from 'errors/OmgEverythingWentWrong';
 import { darkTheme, globals } from './styles';
+import UserList from './views/UserList';
 
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <Global styles={globals} />
-      <h1>Hello App</h1>
+      <OmgEverythingWentWrong>
+        <UserList />
+      </OmgEverythingWentWrong>
     </ThemeProvider>
   );
 }
