@@ -12,6 +12,10 @@ export const globals = (theme) => css`
     color: ${theme.color};
   }
 
+  a {
+    color: ${theme.color};
+  }
+
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
